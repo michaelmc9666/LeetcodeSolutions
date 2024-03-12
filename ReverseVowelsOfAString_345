@@ -1,0 +1,20 @@
+class Solution(object):
+    def reverseVowels(self, s):
+        loc = []
+        length = len(s)
+        return_str = ""
+
+        for i in range(len(s)):
+            if s[i] in "aeiouAEIOU":
+                loc.append(i)
+
+        loc_index = 0
+        for i in range(length):
+            if s[i] not in "aeiouAEIOU":
+                return_str += (s[i])
+            else:
+                index = loc[len(loc)-1-loc_index]
+                loc_index += 1
+                return_str += (s[index])
+
+        return return_str
