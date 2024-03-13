@@ -1,0 +1,33 @@
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        ret_str = ""
+        words = []
+        y = s
+
+        while (y[0] == " "):                # eliminates pre-string spaces
+            y = y[1:len(y)]
+
+        while (y[len(y)-1] == " "):         # eliminates post-string spaces
+            y = y[0:len(y)-1]
+
+        while(y.find("  ")!=-1):            # eliminates extra spaces
+            y = y.replace("  ", " ")
+
+        for i in range(0, y.count(" ")):    # runs as many times as there are spaces
+            loc = y.find(" ")               # lcoates first space
+            words.append(y[0:loc])          # appends string from 0 to space (first word)
+            y = y[loc+1:len(y)]             # updates string from character after space to end (rest of string)
+
+        words.append(y)                     # appends rest of string after last space (last word)
+
+        words.reverse()                     # reverses the words
+        for word in words:
+            ret_str += (str(word) + " ")    # appends all the words with spaces in between
+
+        ret_str = ret_str[0:len(ret_str)-1] # cuts off last space from loop above
+
+        return (ret_str)                    # returns newly created string
